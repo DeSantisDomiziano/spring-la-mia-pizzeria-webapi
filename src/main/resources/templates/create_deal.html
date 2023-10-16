@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Pizzeria</title>
+</head>
+<body>
+	<form
+		th:object="${deal}"
+		method="POST"	
+	>
+	<div>
+	<label for="name">Nome dell'offerta</label>
+	<input type="text" name="name" th:field="*{name}" required maxlength="30" />
+	
+	
+	<label for="startDate">Start Date</label>
+	<input type="date" name="startDate" th:field="*{startDate}" id="startDate" required />
+	
+	<label for="endDate">End Date</label>
+	<input  type="date" name="endDate" th:field="*{endDate}" id="endDate" required />
+	
+	<button type="submit" value="CREATE"> Crea nuova offerta </button>
+	</div>
+	</form>
+</body>
+</html>

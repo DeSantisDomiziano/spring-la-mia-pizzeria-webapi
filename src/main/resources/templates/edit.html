@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h1>Modifica pizza</h1>
+		
+		<form
+		th:object="${pizza}"
+		method="POST">
+		
+			<label for="name"> nome pizza</label>
+			<input type="text" name="name" th:field="*{name}">
+			<div th:if="${#fields.hasErrors('name')}">
+				<ul>
+					<li th:each="err : ${#fields.errors('name')}" th:text="${err}">
+						
+					</li>
+				</ul>
+			</div>
+			<br />
+			<hr>
+			<br />
+			<!--./END ####################### -->
+			
+			<label for="overview"> descrizione pizza</label>
+			<input type="text" name="overview" th:field="*{overview}">
+			<div th:if="${#fields.hasErrors('overview')}">
+				<ul>
+					<li th:each="err : ${#fields.errors('overview')}" th:text="${err}">
+						
+					</li>
+				</ul>
+			</div>
+			<br />
+			<hr>
+			<br />
+			<!--./END ####################### -->
+			
+			<img th:src="${pizza.getPicture()}" style="width: 150px;">
+			<label for="picture"> il percorso dell'immagine</label>
+			<input type="text" name="picture" th:field="*{picture}">
+			<div th:if="${#fields.hasErrors('picture')}">
+				<ul>
+					<li th:each="err : ${#fields.errors('picture')}" th:text="${err}">
+						
+					</li>
+				</ul>
+			</div>
+			<br />
+			<hr>
+			<br />
+			<!--./END ####################### -->
+			
+			<label for="price"> prezzo pizza</label>
+			<input type="number" name="price" th:field="*{price}" min="5" step="0.1" value="5">
+			<div th:if="${#fields.hasErrors('price')}">
+				<ul>
+					<li th:each="err : ${#fields.errors('price')}" th:text="${err}">
+						
+					</li>
+				</ul>
+			</div>
+			<br />
+			<hr>
+			<br />
+			<!--./END ####################### -->
+			
+			<button type="submit">EDITA</button>
+		</form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+		<h1>			
+			[[${pizza.getName()}]]
+		</h1>
+		<a th:href="@{/create/deal/{pizza_id}(pizza_id=${pizza.id})}"> <button> Aggiungi una nuova offerta speciale</button> </a>
+			<img th:src="${pizza.getPicture()}">
+		<strong>			
+			[[${pizza.getPrice()}]] $$$
+		</strong>
+		<p>			
+		<small>			
+			[[${pizza.getOverview()}]]
+		</small>
+		</p>
+		<ul th:if="${pizza.getDeal().size()} > 0">
+			<li th:each="deal : ${pizza.getDeal()}"}>
+				inizio: [[${deal.getStartDate()}]] ~ fine: [[${deal.getEndDate()}]] <br/>
+				nome offerta: [[${deal.getName()}]]
+				<button>
+					<a th:href="@{'/edit/deal/' + ${deal.getId()}}">
+						modifica offerta
+					</a>
+				</button>
+			<hr>
+			</li>
+		</ul>
+</body>
+</html>

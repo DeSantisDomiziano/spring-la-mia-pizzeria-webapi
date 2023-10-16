@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h1>Modifica pizza</h1>
+		
+		<form
+		th:object="${deal}"
+		method="POST">
+		
+			<label for="startDate"> inizio offerta: </label>
+			<input type="date" name="startDate" th:field="*{startDate}">
+			<div th:if="${#fields.hasErrors('startDate')}">
+				<ul>
+					<li th:each="err : ${#fields.errors('startDate')}" th:text="${startDate}">
+						
+					</li>
+				</ul>
+			</div>
+			<hr>
+			
+			<label for="endDate"> inizio offerta: </label>
+			<input type="date" name="endDate" th:field="*{endDate}">
+			<div th:if="${#fields.hasErrors('endDate')}">
+				<ul>
+					<li th:each="err : ${#fields.errors('endDate')}" th:text="${endDate}">
+						
+					</li>
+				</ul>
+			</div>
+			<hr>
+			
+			<label for="name"> inizio offerta: </label>
+			<input type="text" name="name" th:field="*{name}">
+			<div th:if="${#fields.hasErrors('name')}">
+				<ul>
+					<li th:each="err : ${#fields.errors('name')}" th:text="${name}">
+						
+					</li>
+				</ul>
+			</div>
+			<hr>
+			
+			<button type="submit">EDITA</button>
+		</form>
+</body>
+</html>

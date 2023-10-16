@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	
+	<div>
+		<button sec:authorize="hasAuthority('ADMIN')">
+			<a href="/create">
+				nuova pizza
+			</a>
+		</button>
+	
+		<button>
+			<a href="/ingredients/list">
+				gli ingredienti
+			</a>
+		</button>
+		
+		<form>
+			<span>Cerca</span>
+			<input type="text" name="name" th:value="${name}">
+			<input type="submit">
+		</form>
+		
+		<p th:if="${pizze.size()} == 0">
+			non ci sono pizze
+		</p>
+		
+		<ul th:if="${pizze.size()} > 0">
+			<li th:each="pizza : ${pizze}">
+				<a th:href="@{/pizza/{id} (id = ${pizza.getId()} ) }">
+					[[${pizza.getName()}]]
+					<img th:src="${pizza.getPicture()}" style="width: 50px;">
+				</a>
+				[[${pizza.getOverview()}]]
+				[[${pizza.getPrice()}]] $$$
+				<button>					
+				<a 
+					sec:authorize="hasAuthority('ADMIN')"
+					th:href="@{/edit/{id} (id = ${pizza.getId()})}">
+					
+					 Edita 
+				</a>
+				</button>
+				<form th:action="@{/delete/{id}(id=${pizza.id})}" 
+						method="POST"
+						sec:authorize="hasAuthority('ADMIN')">
+					
+					<input type="submit" value="ELIMINA" sec:authorize="hasAuthority('ADMIN')">
+				</form>
+			</li>
+		</ul>
+		
+	</div>
+</body>
+</html>
