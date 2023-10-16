@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +38,7 @@ public class Deal {
 	public Deal() {}
 	
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "pizza_id", nullable = false)
 	private Pizza pizza;
 	

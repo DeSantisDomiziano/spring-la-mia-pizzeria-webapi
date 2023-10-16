@@ -16,6 +16,7 @@ public class PizzaService {
 		
 		pizzaRepo.save(pizza);
 	}
+
 	public List<Pizza> findAll() {
 		
 		return pizzaRepo.findAll();
@@ -32,5 +33,10 @@ public class PizzaService {
 	public void deleteById(int id) {
 		
 		 pizzaRepo.deleteById(id);
+	}
+	
+	public void deletePizza(Pizza pizza) {
+
+		pizzaRepo.delete(pizza);
 	}
  }

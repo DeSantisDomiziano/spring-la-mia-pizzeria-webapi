@@ -2,8 +2,11 @@ package org.java.app.pojo;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.hibernate.validator.constraints.Length;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,9 +48,11 @@ public class Pizza {
 	private float price;
 	
 	@OneToMany(mappedBy = "pizza")
+	@JsonManagedReference
 	private List<Deal> deal;
 	
 	@ManyToMany
+	@JsonManagedReference
 	private List<Ingredient> ingredients;
 
 	public Pizza() {}
@@ -59,7 +64,21 @@ public class Pizza {
 		setPrice(price);
 		setIngredints(Arrays.asList(ingredients));
 	}
-
+	
+	public Pizza(Pizza pizza) {
+		setName(pizza.getName());
+		setOverview(pizza.getOverview());
+		setPicture(pizza.getPicture());
+		setPrice(pizza.getPrice());
+	}
+	
+	public void fillPizza(Pizza pizza) {
+		setName(pizza.getName());
+		setOverview(pizza.getOverview());
+		setPicture(pizza.getPicture());
+		setPrice(pizza.getPrice());
+	}
+	
 	public List<Deal> getDeal() {
 		return deal;
 	}
